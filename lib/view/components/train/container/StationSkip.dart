@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 
 import '../indicators/Dot.dart';
 
-class SkipStation extends StatelessWidget{
+class StationSkip extends StatelessWidget{
 
-  const SkipStation({super.key});
+  const StationSkip({super.key});
 
   @override
   Widget build(BuildContext context) {

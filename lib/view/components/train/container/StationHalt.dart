@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 
 import '../indicators/Dot.dart';
 
-class HaltStation extends StatelessWidget{
+class StationHalt extends StatelessWidget{
 
-  const HaltStation({super.key});
+  const StationHalt({super.key});
 
   @override
   Widget build(BuildContext context) {
