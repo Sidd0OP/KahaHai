@@ -5,17 +5,18 @@ import 'package:flutter/material.dart';
 
 import '../indicators/Dot.dart';
 
-class Station extends StatelessWidget{
+class HaltStation extends StatelessWidget{
 
-  const Station({super.key});
+  const HaltStation({super.key});
 
   @override
   Widget build(BuildContext context) {
 
     return Container(
-      color: Colors.green,
+      // color: Colors.green,
+
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        // mainAxisSize: MainAxisSize.min,
         spacing: 12,
         children: [
           Name(),

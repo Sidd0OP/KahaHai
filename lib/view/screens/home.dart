@@ -1,4 +1,4 @@
-import 'package:app/view/components/train/cards/LargeContainer.dart';
+import 'package:app/view/components/train/container/TrainLarge.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +15,7 @@ class Home extends StatelessWidget{
       backgroundColor: color.secondary,
       body: Container(
           alignment: Alignment.bottomCenter,
-          child: LargeContainer()
+          child: TrainLarge()
       )
     );
   }

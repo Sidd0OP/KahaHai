@@ -1,4 +1,4 @@
-import 'package:app/view/components/train/pill/PlatfromOrDelayPill.dart';
+import 'package:app/view/components/train/pill/Info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -32,7 +32,7 @@ class Name extends StatelessWidget{
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text("Station", style: textTheme.titleLarge,),
-          const PlatformOrDelayPill()
+          const Info()
         ],
       ),
 

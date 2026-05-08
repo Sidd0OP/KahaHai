@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
-class PlatformOrDelayPill extends StatelessWidget{
+class Info extends StatelessWidget{
 
-  const PlatformOrDelayPill({super.key});
+  const Info({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,11 +1,16 @@
 import 'package:app/view/appTheme.dart';
+import 'package:app/view/components/train/pill/Info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
 class Timing extends StatelessWidget{
 
+
+
   const Timing({super.key});
+
+
 
 
   @override
@@ -33,7 +38,15 @@ class Timing extends StatelessWidget{
         children: [
           Text("Scheduled" , style: context.titleSmall),
           Text("11:00am - 11:59am", style: context.titleMedium),
-          Text("Actual" , style: context.titleSmall),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            spacing: 5,
+            children: [
+              Text("Actual" , style: context.titleSmall),
+              Info()
+            ],
+          ),
           Text("11:00am - 11:59am", style: context.titleMedium,)
         ],
       ),
