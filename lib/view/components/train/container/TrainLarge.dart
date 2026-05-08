@@ -5,9 +5,9 @@ import 'package:app/view/components/train/pill/largeContainerHeading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class LargeContainer extends StatelessWidget{
+class Big extends StatelessWidget{
 
-  const LargeContainer({super.key});
+  const Big({super.key});
 
 
   @override

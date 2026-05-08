@@ -13,7 +13,7 @@ class Station extends StatelessWidget{
   Widget build(BuildContext context) {
 
     return Container(
-      // color: Colors.green,
+      color: Colors.green,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         spacing: 12,
