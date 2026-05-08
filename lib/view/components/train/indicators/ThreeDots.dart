@@ -13,15 +13,22 @@ class ThreeDots extends StatelessWidget{
     return Container(
         // height: double.infinity,
         // color: Colors.red,
-        height: 40,
-        alignment: Alignment.topCenter,
-        padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
-        child: Row(
+        // height: 40,
+        // alignment: Alignment.center,
+        // padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
 
-          // crossAxisAlignment: CrossAxisAlignment.stretch,
-          spacing: 5,
-          children: [Dot(),Dot(),Dot()],
-        )
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Transform.translate(
+                offset: Offset(0, -17),
+                child: Row(
+                  spacing: 5,
+                  children: [Dot(),Dot(),Dot()],
+                )
+            )
+          ],
+        ),
     );
   }
 

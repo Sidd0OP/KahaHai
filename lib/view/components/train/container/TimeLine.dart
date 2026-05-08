@@ -4,7 +4,7 @@ import 'package:app/view/components/train/indicators/ThreeDots.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../container/SkipStation.dart';
+import 'SkipStation.dart';
 
 class TimeLine extends StatelessWidget{
 
@@ -13,9 +13,12 @@ class TimeLine extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
 
-    return Stack(
+    return Padding(
+        padding: EdgeInsetsGeometry.fromLTRB(0, 6, 0, 0),
+        child: Stack(
 
       alignment: Alignment.centerLeft,
+
 
       children: [
         //timeline
@@ -39,12 +42,13 @@ class TimeLine extends StatelessWidget{
             HaltStation(),
             ThreeDots(),
             SkipStation(),
-            ThreeDots(),
+            // ThreeDots(),
             HaltStation()
           ],
         )
       ],
 
+    )
     );
   }
 

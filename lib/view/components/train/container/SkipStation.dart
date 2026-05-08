@@ -5,22 +5,21 @@ import 'package:flutter/material.dart';
 
 import '../indicators/Dot.dart';
 
-class HaltStation extends StatelessWidget{
+class SkipStation extends StatelessWidget{
 
-  const HaltStation({super.key});
+  const SkipStation({super.key});
 
   @override
   Widget build(BuildContext context) {
 
     return Container(
-      color: Colors.green,
+      // color: Colors.green,
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        // mainAxisSize: MainAxisSize.min,
         spacing: 12,
         children: [
           Name(),
           Dot(),
-          Timing()
         ],
       ),
     );

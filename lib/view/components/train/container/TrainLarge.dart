@@ -1,13 +1,16 @@
+import 'dart:ffi';
+
 import 'package:app/view/components/train/cards/Timing.dart';
 import 'package:app/view/components/train/cards/Name.dart';
-import 'package:app/view/components/train/indicators/TimeLine.dart';
-import 'package:app/view/components/train/pill/largeContainerHeading.dart';
+import 'package:app/view/components/train/container/TimeLine.dart';
+import 'package:app/view/components/train/container/TrainSmall.dart';
+import 'package:app/view/components/train/pill/Heading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Big extends StatelessWidget{
+class TrainLarge extends StatelessWidget{
 
-  const Big({super.key});
+  const TrainLarge({super.key});
 
 
   @override
@@ -15,8 +18,8 @@ class Big extends StatelessWidget{
 
     return Container(
       width: double.infinity,
-      height: 300,
-      padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+      height:450,
+      padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
       // alignment: AlignmentDirectional.bottomCenter,
       
       decoration: BoxDecoration(
@@ -29,7 +32,7 @@ class Big extends StatelessWidget{
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
 
-        spacing: 5,
+        spacing: 14,
 
         children: [
           LargeContainerHeading(),
@@ -44,14 +47,10 @@ class Big extends StatelessWidget{
                 Center(
                   child: TimeLine(),
                 )
-                // Center(child: StationName()),
-                // Center(child: StationName()),
-                // Center(child: StationName()),
-                // Center(child: StationName()),
-
-              ],
+                ],
             ),
-          )
+          ),
+          TrainSmall(child: Text("data")),
         ],
       ),
     );
