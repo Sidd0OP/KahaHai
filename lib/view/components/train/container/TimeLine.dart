@@ -1,8 +1,10 @@
 import 'package:app/view/appTheme.dart';
-import 'package:app/view/components/train/cards/Station.dart';
+import 'package:app/view/components/train/container/HaltStation.dart';
 import 'package:app/view/components/train/indicators/ThreeDots.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../container/SkipStation.dart';
 
 class TimeLine extends StatelessWidget{
 
@@ -34,11 +36,11 @@ class TimeLine extends StatelessWidget{
         Row(
           spacing: 20,
           children: [
-            Station(),
+            HaltStation(),
             ThreeDots(),
-            Station(),
+            SkipStation(),
             ThreeDots(),
-            Station()
+            HaltStation()
           ],
         )
       ],
