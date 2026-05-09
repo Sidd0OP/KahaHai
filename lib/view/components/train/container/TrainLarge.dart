@@ -18,10 +18,8 @@ class TrainLarge extends StatelessWidget{
 
     return Container(
       width: double.infinity,
-      height:450,
       padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-      // alignment: AlignmentDirectional.bottomCenter,
-      
+
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(topLeft: Radius.circular(60), topRight: Radius.circular(60)),
@@ -29,13 +27,15 @@ class TrainLarge extends StatelessWidget{
 
       child: Column(
 
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
 
         spacing: 14,
 
         children: [
           LargeContainerHeading(),
+          //time line
           SizedBox(
             height: 200,
             child: ListView(

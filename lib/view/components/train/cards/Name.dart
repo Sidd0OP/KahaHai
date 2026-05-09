@@ -18,7 +18,7 @@ class Name extends StatelessWidget{
 
     return Container(
       height: 64,
-      width: 150,
+      width: 160,
 
       decoration: ShapeDecoration(
         color: color.secondary,

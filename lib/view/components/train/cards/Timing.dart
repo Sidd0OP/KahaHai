@@ -18,7 +18,7 @@ class Timing extends StatelessWidget{
 
     return Container(
 
-      width: 150,
+      width: 160,
       height: 90,
 
       padding: EdgeInsets.fromLTRB(8, 5, 8, 5),

@@ -13,9 +13,14 @@ class Home extends StatelessWidget{
 
     return Scaffold(
       backgroundColor: color.secondary,
-      body: Container(
-          alignment: Alignment.bottomCenter,
-          child: TrainLarge()
+      body: SafeArea(
+          top: false,
+          left: false,
+          right: false,
+          child: Container(
+              alignment: Alignment.bottomCenter,
+              child: TrainLarge()
+          )
       )
     );
   }
