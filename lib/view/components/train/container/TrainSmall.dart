@@ -1,4 +1,4 @@
-import 'package:app/view/appTheme.dart';
+import 'package:app/view/AppTheme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
@@ -20,6 +20,8 @@ class TrainSmall extends StatelessWidget{
 
       width: double.infinity,
       height: 120,
+      
+      padding: EdgeInsets.fromLTRB(32, 12, 32, 12),
 
       decoration: ShapeDecoration(
         color: context.tertiary,
@@ -28,6 +30,8 @@ class TrainSmall extends StatelessWidget{
           smoothness: 0.6,
         ),
       ),
+
+      child: child,
 
     );
   }

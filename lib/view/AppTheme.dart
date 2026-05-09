@@ -28,7 +28,7 @@ class AppTheme {
       ),
 
       titleMedium: const TextStyle(
-        fontSize: 12,
+        fontSize: 14,
         color: Colors.black,
         fontWeight: FontWeight.w600,
       ),
@@ -43,6 +43,12 @@ class AppTheme {
         fontSize: 8,
         color: Colors.black,
         fontWeight: FontWeight.w600,
+      ),
+
+      labelMedium: const TextStyle(
+        fontSize: 12,
+        color: Colors.black,
+        fontWeight: FontWeight.w500,
       ),
     ),
   );
@@ -83,4 +89,7 @@ extension AppThemeExtension on BuildContext {
 
   TextStyle? get labelSmall =>
       Theme.of(this).textTheme.labelSmall;
+
+  TextStyle? get labelMedium =>
+      Theme.of(this).textTheme.labelMedium;
 }

@@ -1,4 +1,4 @@
-import 'package:app/view/components/train/pill/Info.dart';
+import 'package:app/view/components/train/pill/StationInfo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';

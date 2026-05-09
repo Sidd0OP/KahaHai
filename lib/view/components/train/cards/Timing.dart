@@ -1,5 +1,5 @@
-import 'package:app/view/appTheme.dart';
-import 'package:app/view/components/train/pill/Info.dart';
+import 'package:app/view/AppTheme.dart';
+import 'package:app/view/components/train/pill/StationInfo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_corner/smooth_corner.dart';

@@ -1,4 +1,4 @@
-import 'package:app/view/appTheme.dart';
+import 'package:app/view/AppTheme.dart';
 import 'package:flutter/cupertino.dart';
 
 
