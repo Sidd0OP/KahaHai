@@ -18,16 +18,16 @@ class Timing extends StatelessWidget{
 
     return Container(
 
-      width: 160,
-      height: 90,
+      width: 170,
+      height: 120,
 
-      padding: EdgeInsets.fromLTRB(8, 5, 8, 5),
+      padding: EdgeInsets.fromLTRB(12, 2, 8, 2),
 
       decoration: ShapeDecoration(
         color: context.secondary,
         shape: SmoothRectangleBorder(
           borderRadius: BorderRadius.circular(18),
-          smoothness: 1,
+          smoothness: 0.6,
         ),
       ),
 
@@ -38,6 +38,7 @@ class Timing extends StatelessWidget{
         children: [
           Text("Scheduled" , style: context.titleSmall),
           Text("11:00am - 11:59am", style: context.titleMedium),
+          SizedBox(height: 14),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,

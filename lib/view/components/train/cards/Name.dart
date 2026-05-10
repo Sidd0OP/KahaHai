@@ -18,13 +18,13 @@ class Name extends StatelessWidget{
 
     return Container(
       height: 64,
-      width: 160,
+      width: 170,
 
       decoration: ShapeDecoration(
         color: color.secondary,
         shape: SmoothRectangleBorder(
           borderRadius: BorderRadius.circular(18),
-          smoothness: 1,
+          smoothness: 0.6,
         ),
       ),
 

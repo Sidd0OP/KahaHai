@@ -16,7 +16,7 @@ class StationHalt extends StatelessWidget{
       // color: Colors.green,
 
       child: Column(
-        // mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.min,
         spacing: 12,
         children: [
           Name(),

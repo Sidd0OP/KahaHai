@@ -15,11 +15,18 @@ class StationSkip extends StatelessWidget{
     return Container(
       // color: Colors.green,
       child: Column(
-        // mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.min,
         spacing: 12,
         children: [
           Name(),
           Dot(),
+          Visibility(
+            visible: false,
+            maintainSize: true,
+            maintainAnimation: true,
+            maintainState: true,
+            child: Timing(),
+          )
         ],
       ),
     );

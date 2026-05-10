@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
-class LargeContainerHeading extends StatelessWidget{
+class Heading extends StatelessWidget{
 
-  const LargeContainerHeading({super.key});
+  const Heading({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class LargeContainerHeading extends StatelessWidget{
 
         ),
 
-        padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
+        padding: EdgeInsets.fromLTRB(18, 0, 18, 0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

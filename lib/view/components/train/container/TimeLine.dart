@@ -40,10 +40,17 @@ class TimeLine extends StatelessWidget{
           spacing: 20,
           children: [
             StationHalt(),
-            ThreeDots(),
+            // ThreeDots(),
+            StationSkip(),
             StationSkip(),
             // ThreeDots(),
-            StationHalt()
+            StationHalt(),
+            ThreeDots(),
+            StationHalt(),
+            ThreeDots(),
+            StationHalt(),
+            ThreeDots(),
+            StationHalt(),
           ],
         )
       ],
