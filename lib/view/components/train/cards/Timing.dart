@@ -38,7 +38,7 @@ class Timing extends StatelessWidget{
         children: [
           Text("Scheduled" , style: context.titleSmall),
           Text("11:00am - 11:59am", style: context.titleMedium),
-          SizedBox(height: 14),
+          SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,

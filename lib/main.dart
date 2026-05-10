@@ -1,6 +1,7 @@
 import 'package:app/view/AppTheme.dart';
 import 'package:app/view/screens/SearchPage.dart';
 import 'package:app/view/screens/TestPage.dart';
+import 'package:app/view/screens/TrackingPage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,7 +19,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Kaha Hai',
       theme: AppTheme.appTheme,
-      home: const TestPage()
+      home: const TrackingPage()
     );
   }
 }

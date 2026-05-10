@@ -18,7 +18,7 @@ class TrainLarge extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+      padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
 
       decoration: BoxDecoration(
         color: Colors.white,
@@ -73,19 +73,19 @@ class TrainLarge extends StatelessWidget {
             child: ListView(
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: EdgeInsets.symmetric(horizontal: 16),
               children: [Center(child: TimeLine())],
             ),
           ),
           Padding(
-            padding: EdgeInsetsGeometry.fromLTRB(10, 0, 10, 0),
+            padding: EdgeInsetsGeometry.fromLTRB(16, 0, 16, 0),
             child: TrainSmall(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 spacing: 14,
                 children: [
                   Text("Bhopal Shatabdi", style: context.headlineLarge),
-                  SourceDestination(),
+                  // SourceDestination(),
                 ],
               ),
             ),

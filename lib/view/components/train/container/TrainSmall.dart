@@ -26,8 +26,8 @@ class TrainSmall extends StatelessWidget{
       decoration: ShapeDecoration(
         color: context.tertiary,
         shape: SmoothRectangleBorder(
-          borderRadius: BorderRadius.circular(40),
-          smoothness: 0.6,
+          borderRadius: BorderRadius.circular(48),
+          smoothness: 0.8,
         ),
       ),
 
