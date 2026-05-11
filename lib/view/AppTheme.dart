@@ -36,7 +36,7 @@ class AppTheme {
       titleSmall: const TextStyle(
         fontSize: 10,
         color: Colors.black,
-        fontWeight: FontWeight.w300,
+        fontWeight: FontWeight.w400,
       ),
 
       labelSmall: const TextStyle(

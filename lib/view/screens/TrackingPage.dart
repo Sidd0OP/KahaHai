@@ -1,5 +1,5 @@
 import 'package:app/view/AppTheme.dart';
-import 'package:app/view/components/train/container/TrainLarge.dart';
+import 'package:app/view/components/train/container/TrainInfoExpanded.dart';
 import 'package:app/view/components/train/map/MapDisplay.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,14 +20,18 @@ class TrackingPage extends StatelessWidget {
           body: Stack(
             alignment: Alignment.bottomCenter,
             children: [
-
               MapDisplay(),
-              TrainLarge(),
+              NotificationListener<TrainInfoCloseNotifier>(
+                onNotification: (notification){
+                  Navigator.pushNamed(context, "/SearchPage");
+                  return true;
+                },
+                  child: TrainInfoExpanded()),
+
               // Align(
               //   alignment: Alignment.bottomCenter,
               //   child: TrainLarge(),
               // )
-
             ],
           ),
         ),

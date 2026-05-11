@@ -19,7 +19,11 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Kaha Hai',
       theme: AppTheme.appTheme,
-      home: const TrackingPage()
+      home: const SearchPage(),
+      routes: {
+        "/SearchPage": (context) => SearchPage(),
+        "/TrackingPage": (context) => TrackingPage(),
+      },
     );
   }
 }

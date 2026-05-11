@@ -20,14 +20,14 @@ class Pill extends StatelessWidget {
     return GestureDetector(
       onTap: onTapCallback,
       child: Container(
-        height: 42.0,
+        height: 48.0,
 
         // constraints: BoxConstraints(maxWidth: 91),
         // alignment: Alignment.center,
         decoration: ShapeDecoration(
           color: selected ? context.primary : context.onSurface,
           shape: SmoothRectangleBorder(
-            borderRadius: BorderRadius.circular(21),
+            borderRadius: BorderRadius.circular(24),
             smoothness: 1,
           ),
         ),

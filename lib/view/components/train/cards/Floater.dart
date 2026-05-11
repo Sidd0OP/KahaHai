@@ -2,13 +2,15 @@ import 'package:app/view/AppTheme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
-class TrainSmall extends StatelessWidget{
+class Floater extends StatelessWidget{
 
   final Widget child;
+  final Color color;
 
-  const TrainSmall({
+  const Floater({
     super.key,
-    required this.child
+    required this.child,
+    required this.color
   });
 
 
@@ -19,12 +21,10 @@ class TrainSmall extends StatelessWidget{
     return Container(
 
       width: double.infinity,
-      height: 120,
-      
-      padding: EdgeInsets.fromLTRB(32, 12, 32, 12),
+      padding: EdgeInsets.fromLTRB(28, 12, 28, 12),
 
       decoration: ShapeDecoration(
-        color: context.tertiary,
+        color: color,
         shape: SmoothRectangleBorder(
           borderRadius: BorderRadius.circular(48),
           smoothness: 0.8,

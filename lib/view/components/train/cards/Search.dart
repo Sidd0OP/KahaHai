@@ -9,7 +9,7 @@ class Search extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 42,
+      height: 48,
       width: double.infinity,
       alignment: Alignment.center,
 
@@ -18,7 +18,7 @@ class Search extends StatelessWidget {
       decoration: ShapeDecoration(
         color: context.primary,
         shape: SmoothRectangleBorder(
-          borderRadius: BorderRadius.circular(22),
+          borderRadius: BorderRadius.circular(24),
           smoothness: 0.6,
         ),
       ),
@@ -36,12 +36,15 @@ class Search extends StatelessWidget {
                 ),
                 border: InputBorder.none,
               ),
+
+              onSubmitted: (String data) {
+                SearchSubmitNotifier(data: data).dispatch(context);
+              },
             ),
           ),
 
           //date selector
           Container(
-
             width: 100,
             height: 36,
 
@@ -55,11 +58,16 @@ class Search extends StatelessWidget {
               ),
             ),
 
-
             child: Text("Date"),
           ),
         ],
       ),
     );
   }
+}
+
+class SearchSubmitNotifier extends Notification {
+  final String data;
+
+  const SearchSubmitNotifier({required this.data});
 }

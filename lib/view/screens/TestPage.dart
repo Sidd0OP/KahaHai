@@ -1,4 +1,4 @@
-import 'package:app/view/components/train/container/TrainLarge.dart';
+import 'package:app/view/components/train/container/TrainInfoExpanded.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +14,7 @@ class TestPage extends StatelessWidget{
     return Scaffold(
 
       backgroundColor: color.secondary,
-      body: Align(alignment: Alignment.bottomCenter,child: TrainLarge())
+      body: Align(alignment: Alignment.bottomCenter,child: TrainInfoExpanded())
     );
   }
 
