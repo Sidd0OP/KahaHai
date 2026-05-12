@@ -13,15 +13,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
-class TrainInfoExpanded extends StatelessWidget {
+class TrainInfoExpanded extends StatefulWidget {
+
   const TrainInfoExpanded({super.key});
 
+  @override
+  State<TrainInfoExpanded> createState() => _TrainInfoExpandedState();
+
+}
+
+class _TrainInfoExpandedState extends State<TrainInfoExpanded> {
+
   Widget _sourceDestinationTime(
-    BuildContext context,
-    Color color,
-    String location,
-    String time,
-  ) {
+      BuildContext context,
+      Color color,
+      String location,
+      String time,
+      )
+  {
     return Container(
       // height: 48,
       constraints: const BoxConstraints(minWidth: 140, maxWidth: 140),
@@ -54,7 +63,15 @@ class TrainInfoExpanded extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  void initState()
+  {
+    super.initState();
+
+  }
+
+  @override
+  Widget build(BuildContext context)
+  {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
@@ -75,6 +92,9 @@ class TrainInfoExpanded extends StatelessWidget {
         spacing: 14,
 
         children: [
+
+          //header
+          // Give data from Train Dao....
           Stack(
             alignment: Alignment.center,
             children: [
@@ -104,6 +124,7 @@ class TrainInfoExpanded extends StatelessWidget {
           ),
 
           //time line
+          //Give Data from Route Dao
           SizedBox(
             height: 240,
             child: ListView(
@@ -113,6 +134,9 @@ class TrainInfoExpanded extends StatelessWidget {
               children: [Center(child: TimeLine())],
             ),
           ),
+
+          //bottom floater
+          //Give Data from Train Dao....
           Padding(
             padding: EdgeInsetsGeometry.fromLTRB(16, 0, 16, 0),
             child: Floater(
@@ -135,8 +159,6 @@ class TrainInfoExpanded extends StatelessWidget {
                         "20Nov, 11:59pm",
                       ),
 
-
-
                       //arrow container
                       Container(
                         width: 24,
@@ -157,8 +179,6 @@ class TrainInfoExpanded extends StatelessWidget {
                         // ),
                       ),
 
-
-
                       //destination
                       _sourceDestinationTime(
                         context,
@@ -176,9 +196,10 @@ class TrainInfoExpanded extends StatelessWidget {
       ),
     );
   }
+
 }
 
 
-class TrainInfoCloseNotifier extends Notification{
+class TrainInfoCloseNotifier extends Notification {
 
 }

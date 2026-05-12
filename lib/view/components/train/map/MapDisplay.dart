@@ -30,9 +30,9 @@ class _MapDisplayState extends State<MapDisplay> {
         )
         .toList();
 
-    setState(() {
-      markers = loadedMarker;
-    });
+    // setState(() {
+    //   markers = loadedMarker;
+    // });
 
   }
 
