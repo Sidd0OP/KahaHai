@@ -7,6 +7,12 @@ class LiveMap {
     var response = await http.get(
       Uri.https(EndPoints.baseUrl , EndPoints.allTrainMaps, {'apiKey': EndPoints.apiKey}),
     );
+
+    if(response.statusCode != 200)
+    {
+      //throw an exception
+    }
+
     return jsonDecode(response.body);
   }
 }

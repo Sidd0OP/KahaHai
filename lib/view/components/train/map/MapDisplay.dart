@@ -1,52 +1,63 @@
+import 'dart:ffi';
+
+import 'package:app/data/model/train/MapMarker.dart';
 import 'package:app/data/respository/train/TrainRepo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
-class MapDisplay extends StatefulWidget{
-
+class MapDisplay extends StatefulWidget {
   const MapDisplay({super.key});
 
   @override
   State<MapDisplay> createState() => _MapDisplayState();
 }
 
-
-class _MapDisplayState extends State<MapDisplay>{
+class _MapDisplayState extends State<MapDisplay> {
 
   final TrainRepo _repo = TrainRepo();
+  late  List<Marker> markers = [];
+
+  Future<void> loadMarkers() async {
+    List<MapMarker> markerModels = await _repo.getAllTrainMapMarkers();
+
+    List<Marker> loadedMarker =  markerModels
+        .map(
+          (model) => Marker(
+            point: LatLng(model.currentLat, model.currentLng),
+            child: FlutterLogo(),
+          ),
+        )
+        .toList();
+
+    setState(() {
+      markers = loadedMarker;
+    });
+
+  }
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    var data = _repo.getAllTrainMapData();
-
-    data.asStream().forEach((train) {
-
-      print(train.values);
-
-    });
-    print("Map Display initialised");
+    loadMarkers();
   }
 
   @override
   Widget build(BuildContext context) {
     return FlutterMap(
-      mapController: MapController(
-
-      ),
+      mapController: MapController(),
       options: MapOptions(
-          initialCenter: LatLng(28.7041, 77.1025)
+        initialCenter: LatLng(28.7041, 77.1025),
+        initialZoom: 5,
       ),
       children: [
         TileLayer(
-          urlTemplate: 'https://api.maptiler.com/maps/outdoor-v4/{z}/{x}/{y}@2x.png?key=9X1VrMpeoWjXrgOaaChQ',
+          urlTemplate:
+              'https://api.maptiler.com/maps/outdoor-v4/{z}/{x}/{y}@2x.png?key=9X1VrMpeoWjXrgOaaChQ',
           userAgentPackageName: 'com.kahahai.app',
         ),
-        // MarkerLayer(markers: )
+        MarkerLayer(markers: markers)
       ],
     );
   }
-
-
 }
