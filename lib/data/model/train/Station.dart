@@ -23,15 +23,41 @@ class Station {
 
   factory Station.fromJson(Map<String, dynamic> json) {
     return Station(
-      sequence: json["sequence"] ?? 0,
-      stationCode: json["stationCode"] ?? "",
-      stationName: json["stationName"] ?? "",
-      isHalt: json["isHalt"] ?? 0,
-      scheduledArrival: json["scheduledArrival"] ?? 0,
-      scheduledDeparture: json["scheduledDeparture"] ?? 0,
-      platform: json["platform"] ?? "",
-      day: json["day"] ?? 0,
-      distanceFromSourceKm: (json["distanceFromSourceKm"] ?? 0).toDouble(),
+      sequence:
+      (json["sequence"] as num?)
+          ?.toInt() ?? 0,
+
+      stationCode:
+      json["stationCode"] ?? "",
+
+      stationName:
+      json["stationName"] ?? "",
+
+      isHalt:
+      (json["isHalt"] as num?)
+          ?.toInt() ?? 0,
+
+      scheduledArrival:
+      (json["scheduledArrival"]
+      as num?)
+          ?.toInt() ?? 0,
+
+      scheduledDeparture:
+      (json["scheduledDeparture"]
+      as num?)
+          ?.toInt() ?? 0,
+
+      platform:
+      json["platform"] ?? "",
+
+      day:
+      (json["day"] as num?)
+          ?.toInt() ?? 0,
+
+      distanceFromSourceKm:
+      (json["distanceFromSourceKm"]
+      as num?)
+          ?.toDouble() ?? 0.0,
     );
   }
 }

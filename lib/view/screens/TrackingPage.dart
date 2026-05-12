@@ -1,3 +1,5 @@
+import 'package:app/data/model/train/Station.dart';
+import 'package:app/data/model/train/Train.dart';
 import 'package:app/data/respository/train/TrainRepo.dart';
 import 'package:app/view/AppTheme.dart';
 import 'package:app/view/components/train/container/TrainInfoExpanded.dart';
@@ -15,54 +17,56 @@ class TrackingPage extends StatefulWidget {
 }
 
 class _TrackingPageState extends State<TrackingPage> {
-
   final TrainRepo _repo = TrainRepo();
 
+  Train? train;
+  List<Station> stations = [];
 
-  Future<void> loadTrainInfo() async
-  {
+  Future<void> loadTrainInfo() async {
     TrainInfo data = await _repo.getTrainInfo(12001, "2026-05-12");
-    for (var s in data.station) {
-      print(s.stationName);
-    }
-    print("Loaded Train Data");
-  }
 
+    setState(() {
+      train = data.train;
+      stations = data.station;
+    });
+  }
 
   @override
-  void initState()
-  {
+  void initState() {
     super.initState();
     loadTrainInfo();
-
   }
-
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: context.primary,
-      child: SafeArea(
-        top: false,
-        left: false,
-        right: false,
-        child: Scaffold(
-          backgroundColor: context.primary,
-          body: Stack(
-            alignment: Alignment.bottomCenter,
-            children: [
-              MapDisplay(),
-              NotificationListener<TrainInfoCloseNotifier>(
-                onNotification: (notification) {
-                  Navigator.pushNamed(context, "/SearchPage");
-                  return true;
-                },
-                child: TrainInfoExpanded(),
-              ),
-            ],
+    if (train == null) {
+      return Text("Not loaded yet");
+    } else {
+      return
+        Container(
+        color: context.primary,
+        child: SafeArea(
+          top: false,
+          left: false,
+          right: false,
+          child: Scaffold(
+            backgroundColor: context.primary,
+            body: Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                MapDisplay(),
+                NotificationListener<TrainInfoCloseNotifier>(
+                  onNotification: (notification) {
+                    Navigator.pushNamed(context, "/SearchPage");
+                    return true;
+                  },
+                  child: TrainInfoExpanded(train: train!, stations: stations),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
+    }
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:app/data/model/train/Station.dart';
 import 'package:app/view/AppTheme.dart';
 import 'package:app/view/components/train/cards/Timing.dart';
 import 'package:app/view/components/train/cards/Name.dart';
@@ -13,16 +14,35 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
+import '../../../../data/model/train/Train.dart';
+
 class TrainInfoExpanded extends StatefulWidget {
 
-  const TrainInfoExpanded({super.key});
+  final Train train;
+  final List<Station> stations;
+
+  const TrainInfoExpanded({
+    super.key,
+    required this.train,
+    required this.stations
+  });
 
   @override
-  State<TrainInfoExpanded> createState() => _TrainInfoExpandedState();
+  State<TrainInfoExpanded> createState() => _TrainInfoExpandedState(train: train, stations: stations);
 
 }
 
 class _TrainInfoExpandedState extends State<TrainInfoExpanded> {
+
+
+  final Train train;
+  final List<Station> stations;
+
+  _TrainInfoExpandedState({
+    required this.train,
+    required this.stations
+  });
+
 
   Widget _sourceDestinationTime(
       BuildContext context,
@@ -66,12 +86,13 @@ class _TrainInfoExpandedState extends State<TrainInfoExpanded> {
   void initState()
   {
     super.initState();
-
   }
 
   @override
   Widget build(BuildContext context)
   {
+
+
     return Container(
       width: double.infinity,
       padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
@@ -131,7 +152,7 @@ class _TrainInfoExpandedState extends State<TrainInfoExpanded> {
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
               padding: EdgeInsets.symmetric(horizontal: 16),
-              children: [Center(child: TimeLine())],
+              children: [Center(child: TimeLine(stations: stations))],
             ),
           ),
 

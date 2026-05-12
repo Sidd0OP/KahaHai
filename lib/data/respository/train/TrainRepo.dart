@@ -26,15 +26,15 @@ class TrainRepo {
         .toList();
   }
 
-  Future<TrainInfo> getTrainInfo(int trainNumber, String date) async
-  {
+  Future<TrainInfo> getTrainInfo(int trainNumber, String date) async {
     final jsonObject = await TrainService().getTrainData(
       "static",
       "12001",
       "2026-05-12",
     );
 
-    if (jsonObject["success"] != true) {
+    if (jsonObject["success"] != true)
+    {
       //throw exception
     }
 
@@ -44,23 +44,12 @@ class TrainRepo {
     Train train = Train.fromJson(trainData["train"]);
 
     //Train station data
-    List<Station> stations = (trainData["route"] as List<dynamic>).map(
-      (stationObject) => Station(
-        sequence: stationObject["sequence"],
-        stationCode: stationObject["stationCode"],
-        stationName: stationObject["stationName"],
-        isHalt: stationObject["isHalt"],
-        scheduledArrival: stationObject["scheduledArrival"],
-        scheduledDeparture: stationObject["scheduledDeparture"],
-        platform: stationObject["platform"],
-        day: stationObject["day"],
-        distanceFromSourceKm: stationObject["distanceFromSourceKm"],
-      ),
-    ).toList();
+    List<Station> stations = (trainData["route"] as List<dynamic>)
+        .map((stationObject) => Station.fromJson(stationObject))
+        .toList();
+
 
 
     return TrainInfo(train: train, station: stations);
-
-
   }
 }

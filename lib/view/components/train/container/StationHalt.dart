@@ -7,7 +7,8 @@ import '../indicators/Dot.dart';
 
 class StationHalt extends StatelessWidget{
 
-  const StationHalt({super.key});
+  final String name;
+  const StationHalt({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class StationHalt extends StatelessWidget{
         mainAxisSize: MainAxisSize.min,
         spacing: 12,
         children: [
-          Name(),
+          Name(name: name),
           Dot(),
           Timing()
         ],

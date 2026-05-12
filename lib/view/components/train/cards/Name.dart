@@ -7,7 +7,9 @@ import 'package:smooth_corner/smooth_corner.dart';
 
 class Name extends StatelessWidget{
 
-  const Name({super.key});
+  final String name;
+
+  const Name({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class Name extends StatelessWidget{
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text("Station", style: textTheme.titleLarge,),
+          Text(name, style: textTheme.titleLarge,),
           const Info()
         ],
       ),
@@ -41,16 +43,16 @@ class Name extends StatelessWidget{
 
 }
 
-
-
-@Preview()
-Widget previewStationName() {
-  return const MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: Scaffold(
-      body: Center(
-        child: Name(),
-      ),
-    ),
-  );
-}
+//
+//
+// @Preview()
+// Widget previewStationName() {
+//   return const MaterialApp(
+//     debugShowCheckedModeBanner: false,
+//     home: Scaffold(
+//       body: Center(
+//         child: Name(),
+//       ),
+//     ),
+//   );
+// }

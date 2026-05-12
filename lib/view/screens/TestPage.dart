@@ -13,8 +13,8 @@ class TestPage extends StatelessWidget{
 
     return Scaffold(
 
-      backgroundColor: color.secondary,
-      body: Align(alignment: Alignment.bottomCenter,child: TrainInfoExpanded())
+      // backgroundColor: color.secondary,
+      // body: Align(alignment: Alignment.bottomCenter,child: TrainInfoExpanded())
     );
   }
 

@@ -7,7 +7,8 @@ import '../indicators/Dot.dart';
 
 class StationSkip extends StatelessWidget{
 
-  const StationSkip({super.key});
+  final String name;
+  const StationSkip({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class StationSkip extends StatelessWidget{
         mainAxisSize: MainAxisSize.min,
         spacing: 12,
         children: [
-          Name(),
+          Name(name: this.name,),
           Dot(),
           Visibility(
             visible: false,
