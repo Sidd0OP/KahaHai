@@ -192,12 +192,12 @@ class _TrainInfoExpandedState extends State<TrainInfoExpanded> {
                             smoothness: 0.6,
                           ),
                         ),
-                        // child: SvgPicture.asset(
-                        //   "assets/svg/cross.svg",
-                        //   width: 24,
-                        //   height: 24,
-                        //
-                        // ),
+                        child: SvgPicture.asset(
+                          "assets/svg/arrow.svg",
+                          width: 16,
+                          height: 16,
+
+                        ),
                       ),
 
                       //destination
