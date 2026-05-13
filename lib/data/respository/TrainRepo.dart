@@ -1,15 +1,16 @@
-import 'package:app/data/model/train/MapMarker.dart';
+import 'package:app/data/model/train/TrainPosition.dart';
 import 'package:app/data/model/train/Station.dart';
 
-import '../../model/train/Train.dart';
-import '../../model/train/TrainInfo.dart';
-import '../../services/TrainService.dart';
+import '../model/train/Train.dart';
+import '../model/train/JourneyData.dart';
+import '../services/TrainService.dart';
 
 class TrainRepo {
-  Future<List<MapMarker>> getAllTrainMapMarkers() async {
+  Future<List<TrainPosition>> getAllTrainPositions() async {
     final jsonObject = await TrainService().getAllTrainMapData();
 
-    if (jsonObject["success"] != true) {
+    if (jsonObject["success"] != true)
+    {
       //throw exception
     }
 
@@ -22,11 +23,15 @@ class TrainRepo {
               trainJson["next_lat"] != null &&
               trainJson["next_lng"] != null;
         })
-        .map((train) => MapMarker.fromJson(train))
+        .map((train) => TrainPosition.fromJson(train))
         .toList();
   }
 
-  Future<TrainInfo> getTrainInfo(int trainNumber, String date) async {
+
+
+
+
+  Future<JourneyData> getJourneyData(int trainNumber, String date) async {
     final jsonObject = await TrainService().getTrainData(
       "static",
       "12001",
@@ -48,8 +53,6 @@ class TrainRepo {
         .map((stationObject) => Station.fromJson(stationObject))
         .toList();
 
-
-
-    return TrainInfo(train: train, station: stations);
+    return JourneyData(train: train, station: stations);
   }
 }

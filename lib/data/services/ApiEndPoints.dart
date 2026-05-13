@@ -1,4 +1,4 @@
-class EndPoints {
+class ApiEndPoints {
 
   static String baseUrl = "api.railradar.org";
   //find a better place for this

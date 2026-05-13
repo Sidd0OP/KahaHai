@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:latlng/latlng.dart';
 
-class MapMarker {
+class TrainPosition {
   final String trainNumber;
   final String trainName;
 
@@ -14,7 +14,7 @@ class MapMarker {
 
   final double angle;
 
-  MapMarker({
+  TrainPosition({
     required this.trainNumber,
     required this.trainName,
     required this.currentLat,
@@ -24,7 +24,7 @@ class MapMarker {
     required this.angle,
   });
 
-  factory MapMarker.fromJson(Map<String, dynamic> json) {
+  factory TrainPosition.fromJson(Map<String, dynamic> json) {
 
     double currentLat = (json["current_lat"] as num).toDouble();
     double currentLng = (json["current_lng"] as num).toDouble();
@@ -34,7 +34,7 @@ class MapMarker {
 
     double angle = calculateBearing(currentLat, currentLng, nextLat, nextLng);
 
-    return MapMarker(
+    return TrainPosition(
       trainNumber: json["train_number"] as String,
       trainName: json["train_name"] as String,
       currentLat: currentLat,

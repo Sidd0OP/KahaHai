@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'EndPoints.dart';
+import 'ApiEndPoints.dart';
 
 class TrainService {
   Future<Map<String, dynamic>> getAllTrainMapData() async {
     var response = await http.get(
-      Uri.https(EndPoints.baseUrl, EndPoints.allTrainMaps, {
-        'apiKey': EndPoints.apiKey,
+      Uri.https(ApiEndPoints.baseUrl, ApiEndPoints.allTrainMaps, {
+        'apiKey': ApiEndPoints.apiKey,
       }),
     );
 
@@ -26,13 +26,13 @@ class TrainService {
   ) async {
     var response = await http.get(
       Uri.https(
-        EndPoints.baseUrl,
-        "${EndPoints.liveTrainTracking}$trainNumber",
+        ApiEndPoints.baseUrl,
+        "${ApiEndPoints.liveTrainTracking}$trainNumber",
         {
           'journeyDate': date,
           'dataType': dataType,
           'dataProvider': "railradar",
-          'apiKey': EndPoints.apiKey,
+          'apiKey': ApiEndPoints.apiKey,
         },
       ),
     );

@@ -1,7 +1,7 @@
 import 'dart:ffi';
 
-import 'package:app/data/model/train/MapMarker.dart';
-import 'package:app/data/respository/train/TrainRepo.dart';
+import 'package:app/data/model/train/TrainPosition.dart';
+import 'package:app/data/respository/TrainRepo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -19,7 +19,7 @@ class _MapDisplayState extends State<MapDisplay> {
   late  List<Marker> markers = [];
 
   Future<void> loadMarkers() async {
-    List<MapMarker> markerModels = await _repo.getAllTrainMapMarkers();
+    List<TrainPosition> markerModels = await _repo.getAllTrainPositions();
 
     List<Marker> loadedMarker =  markerModels
         .map(
