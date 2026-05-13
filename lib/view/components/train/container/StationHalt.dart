@@ -1,3 +1,4 @@
+import 'package:app/data/model/train/Station.dart';
 import 'package:app/view/components/train/cards/Timing.dart';
 import 'package:app/view/components/train/cards/Name.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,8 +8,8 @@ import '../indicators/Dot.dart';
 
 class StationHalt extends StatelessWidget{
 
-  final String name;
-  const StationHalt({super.key, required this.name});
+  final Station station;
+  const StationHalt({super.key, required this.station});
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +21,15 @@ class StationHalt extends StatelessWidget{
         mainAxisSize: MainAxisSize.min,
         spacing: 12,
         children: [
-          Name(name: name),
+
+          Name(name: station.stationName),
+
           Dot(),
-          Timing()
+
+          Timing(scheduledArrival: station.scheduledArrival,
+          scheduledDeparture: station.scheduledDeparture,
+          actualArrival: station.actualArrival ?? " ",
+          actualDeparture: station.actualDeparture ?? " ")
         ],
       ),
     );

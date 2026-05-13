@@ -28,20 +28,12 @@ class TrainInfoExpanded extends StatefulWidget {
   });
 
   @override
-  State<TrainInfoExpanded> createState() => _TrainInfoExpandedState(train: train, stations: stations);
+  State<TrainInfoExpanded> createState() => _TrainInfoExpandedState();
 
 }
 
 class _TrainInfoExpandedState extends State<TrainInfoExpanded> {
 
-
-  final Train train;
-  final List<Station> stations;
-
-  _TrainInfoExpandedState({
-    required this.train,
-    required this.stations
-  });
 
 
   Widget _sourceDestinationTime(
@@ -91,6 +83,16 @@ class _TrainInfoExpandedState extends State<TrainInfoExpanded> {
   @override
   Widget build(BuildContext context)
   {
+
+    final String trainName = widget.train.trainName;
+    final String trainNumber = widget.train.trainNumber;
+
+    final String sourceStationCode = widget.train.sourceStationCode;
+    final String destinationStationCode = widget.train.destinationStationCode;
+
+    //temporary
+    final String departure = widget.stations[0].scheduledDeparture;
+    final String arrival = widget.stations.last.scheduledArrival;
 
 
     return Container(
@@ -152,7 +154,7 @@ class _TrainInfoExpandedState extends State<TrainInfoExpanded> {
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
               padding: EdgeInsets.symmetric(horizontal: 16),
-              children: [Center(child: TimeLine(stations: stations))],
+              children: [Center(child: TimeLine(stations: widget.stations))],
             ),
           ),
 
@@ -166,7 +168,7 @@ class _TrainInfoExpandedState extends State<TrainInfoExpanded> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 spacing: 14,
                 children: [
-                  Text("12001 Bhopal Shatabdi", style: context.headlineLarge),
+                  Text("$trainNumber $trainName", style: context.headlineLarge),
                   Row(
                     spacing: 8,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -176,8 +178,8 @@ class _TrainInfoExpandedState extends State<TrainInfoExpanded> {
                       _sourceDestinationTime(
                         context,
                         context.primary,
-                        "NDLS",
-                        "20Nov, 11:59pm",
+                        sourceStationCode,
+                        departure,
                       ),
 
                       //arrow container
@@ -204,8 +206,8 @@ class _TrainInfoExpandedState extends State<TrainInfoExpanded> {
                       _sourceDestinationTime(
                         context,
                         context.primary,
-                        "RKMP",
-                        "20Nov, 11:59pm",
+                        destinationStationCode,
+                        arrival,
                       ),
                     ],
                   ),

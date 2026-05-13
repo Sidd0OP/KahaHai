@@ -21,13 +21,13 @@ class StationSkip extends StatelessWidget{
         children: [
           Name(name: this.name,),
           Dot(),
-          Visibility(
-            visible: false,
-            maintainSize: true,
-            maintainAnimation: true,
-            maintainState: true,
-            child: Timing(),
-          )
+          // Visibility(
+          //   visible: false,
+          //   maintainSize: true,
+          //   maintainAnimation: true,
+          //   maintainState: true,
+          //   // child: Timing(),
+          // )
         ],
       ),
     );

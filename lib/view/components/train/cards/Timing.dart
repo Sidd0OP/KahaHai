@@ -4,20 +4,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
-class Timing extends StatelessWidget{
+class Timing extends StatelessWidget {
+  final String scheduledArrival;
+  final String scheduledDeparture;
 
+  final String actualArrival;
+  final String actualDeparture;
 
-
-  const Timing({super.key});
-
-
-
+  const Timing({
+    super.key,
+    required this.scheduledArrival,
+    required this.scheduledDeparture,
+    required this.actualArrival,
+    required this.actualDeparture,
+  });
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
-
       width: 170,
       height: 120,
 
@@ -32,28 +36,27 @@ class Timing extends StatelessWidget{
       ),
 
       child: Column(
-
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Scheduled" , style: context.titleSmall),
-          Text("11:00am - 11:59am", style: context.titleMedium),
+          Text("Scheduled", style: context.titleSmall),
+          Text(
+            "$scheduledArrival - $scheduledDeparture",
+            style: context.titleMedium,
+          ),
           SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             spacing: 5,
             children: [
-              Text("Actual" , style: context.titleSmall),
-              Info()
+              Text("Actual", style: context.titleSmall),
+              Info(),
             ],
           ),
-          Text("11:00am - 11:59am", style: context.titleMedium,)
+          Text("$actualArrival - $actualDeparture", style: context.titleMedium),
         ],
       ),
-
     );
   }
-
-
 }

@@ -50,7 +50,7 @@ class _TimeLineState extends State<TimeLine>
           //stations
           Row(
             spacing: 20,
-            children: widget.stations.map((station) => (StationHalt(name: station.stationName))).toList(),
+            children: widget.stations.map((station) => (StationHalt(station: station))).toList(),
           ),
         ],
       ),
