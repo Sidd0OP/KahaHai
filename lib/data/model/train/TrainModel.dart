@@ -1,4 +1,4 @@
-class Train {
+class TrainModel {
 
   //static details
   String trainNumber;
@@ -19,7 +19,7 @@ class Train {
   double? currentLng;
 
 
-  Train({
+  TrainModel({
     required this.trainNumber,
     required this.trainName,
     required this.sourceStationCode,
@@ -32,8 +32,8 @@ class Train {
     required this.distanceKm,
   });
 
-  factory Train.fromJson(Map<String, dynamic> json) {
-    return Train(
+  factory TrainModel.fromJson(Map<String, dynamic> json) {
+    return TrainModel(
 
       trainNumber: json["trainNumber"] ?? "",
       trainName: json["trainName"] ?? "",

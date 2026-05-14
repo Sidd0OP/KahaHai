@@ -1,19 +1,16 @@
-import 'package:app/data/model/train/Station.dart';
+import 'package:app/data/model/train/StationModel.dart';
 import 'package:app/view/AppTheme.dart';
-import 'package:app/view/components/train/container/StationHalt.dart';
+import 'package:app/view/components/train/container/Station.dart';
 import 'package:app/view/components/train/indicators/ThreeDots.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'StationSkip.dart';
 
 class TimeLine extends StatefulWidget {
 
-  final List<Station> stations;
+  final List<StationModel> stations;
 
   const TimeLine({super.key, required this.stations});
-
-
 
   @override
   State<TimeLine> createState() => _TimeLineState();
@@ -50,7 +47,7 @@ class _TimeLineState extends State<TimeLine>
           //stations
           Row(
             spacing: 20,
-            children: widget.stations.map((station) => (StationHalt(station: station))).toList(),
+            children: widget.stations.map((station) => (Station(stationModel: station))).toList(),
           ),
         ],
       ),

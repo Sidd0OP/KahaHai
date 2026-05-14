@@ -11,12 +11,15 @@ class Timing extends StatelessWidget {
   final String actualArrival;
   final String actualDeparture;
 
+  final int delayDeparture;
+
   const Timing({
     super.key,
     required this.scheduledArrival,
     required this.scheduledDeparture,
     required this.actualArrival,
     required this.actualDeparture,
+    required this.delayDeparture,
   });
 
   @override
@@ -51,7 +54,12 @@ class Timing extends StatelessWidget {
             spacing: 5,
             children: [
               Text("Actual", style: context.titleSmall),
-              Info(),
+              Visibility(
+                visible: delayDeparture > 0,
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,child: StationInfo(isHalt: 0,value: delayDeparture,)
+              ),
             ],
           ),
           Text("$actualArrival - $actualDeparture", style: context.titleMedium),

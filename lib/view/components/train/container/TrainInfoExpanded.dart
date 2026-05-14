@@ -1,6 +1,6 @@
 import 'dart:ffi';
 
-import 'package:app/data/model/train/Station.dart';
+import 'package:app/data/model/train/StationModel.dart';
 import 'package:app/view/AppTheme.dart';
 import 'package:app/view/components/train/cards/Timing.dart';
 import 'package:app/view/components/train/cards/Name.dart';
@@ -14,12 +14,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
-import '../../../../data/model/train/Train.dart';
+import '../../../../data/model/train/TrainModel.dart';
 
 class TrainInfoExpanded extends StatefulWidget {
 
-  final Train train;
-  final List<Station> stations;
+  final TrainModel train;
+  final List<StationModel> stations;
 
   const TrainInfoExpanded({
     super.key,

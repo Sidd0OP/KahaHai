@@ -1,5 +1,5 @@
-import 'package:app/data/model/train/Station.dart';
-import 'package:app/data/model/train/Train.dart';
+import 'package:app/data/model/train/StationModel.dart';
+import 'package:app/data/model/train/TrainModel.dart';
 import 'package:app/data/respository/TrainRepo.dart';
 import 'package:app/view/AppTheme.dart';
 import 'package:app/view/components/train/container/TrainInfoExpanded.dart';
@@ -7,7 +7,7 @@ import 'package:app/view/components/train/map/MapDisplay.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../data/model/train/JourneyData.dart';
+import '../../data/model/train/JourneyModel.dart';
 
 class TrackingPage extends StatefulWidget {
   const TrackingPage({super.key});
@@ -19,11 +19,11 @@ class TrackingPage extends StatefulWidget {
 class _TrackingPageState extends State<TrackingPage> {
   final TrainRepo _repo = TrainRepo();
 
-  Train? train;
-  List<Station> stations = [];
+  TrainModel? train;
+  List<StationModel> stations = [];
 
   Future<void> loadTrainInfo() async {
-    JourneyData data = await _repo.getJourneyData(12001, "2026-05-12");
+    JourneyDataModel data = await _repo.getJourneyData(12001, "2026-05-12");
 
     setState(() {
       train = data.train;
