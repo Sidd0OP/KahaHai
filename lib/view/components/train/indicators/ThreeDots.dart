@@ -1,22 +1,39 @@
+import 'package:app/data/model/train/StationModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'Dot.dart';
 
-class ThreeDots extends StatelessWidget {
-  final Function(int) onTap;
-  final int haltStationIndex;
+class ThreeDots extends StatefulWidget {
+
+  final Function(StationModel) onTap;
+  final StationModel haltStation;
 
   const ThreeDots({
     super.key,
     required this.onTap,
-    required this.haltStationIndex,
+    required this.haltStation
   });
+
+  @override
+  State<ThreeDots> createState() => _ThreeDotsState();
+}
+
+class _ThreeDotsState extends State<ThreeDots> {
+
+  bool selectedState = false;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => onTap(haltStationIndex),
+      onTap: () {
+
+        setState(() {
+          selectedState = true;
+        });
+
+        widget.onTap(widget.haltStation);
+      },
 
       child: Container(
         // color: Colors.red,

@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:app/data/model/train/StationModel.dart';
 import 'package:app/view/AppTheme.dart';
 import 'package:app/view/components/train/container/Station.dart';
@@ -15,64 +17,97 @@ class TimeLine extends StatefulWidget {
 }
 
 class _TimeLineState extends State<TimeLine> {
+  List<Widget> FINAL_TIMELINE_STATION_WIDGETS = [];
 
-  List<Widget> timeLineChildren = [];
-  List<StationModel> tempSkipStationsList = [];
+  List<StationModel> haltStationModelList = [];
 
-  Map<int, List<Widget>> skipStationMap = {};
-  int haltStationIndex = 0;
+  //all skip stations and three dots after current halt station
+  Map<StationModel, List<StationModel>> skipStationsAfterHaltMap = {};
+  Map<StationModel, Widget> threeDotsForHaltStationMap = {};
 
-  void onThreeDotTap(int haltStationIndex)
-  {
-    //add skip stations to timeLine
-    setState(() {
+  //all enabled thee dots corresponding to the halt station
+  HashSet<StationModel> enabledSet = HashSet();
 
-      timeLineChildren.insertAll(haltStationIndex + 1, skipStationMap[haltStationIndex]!);
+  void fillTimeLineStationWidget() {
+    for (StationModel halt in haltStationModelList)
+    {
 
-    });
+      FINAL_TIMELINE_STATION_WIDGETS.add(Station(stationModel: halt));
+
+      if (enabledSet.contains(halt))
+      {
+        List<StationModel> skipStations = skipStationsAfterHaltMap[halt]!;
+        for(StationModel skip in skipStations)
+        {
+          FINAL_TIMELINE_STATION_WIDGETS.add(Station(stationModel: skip));
+        }
+
+      }else{
+
+        if(threeDotsForHaltStationMap.containsKey(halt))
+        {
+          FINAL_TIMELINE_STATION_WIDGETS.add(threeDotsForHaltStationMap[halt]!);
+        }
+
+      }
+    }
   }
 
+  void onThreeDotTap(StationModel haltStation) {
+
+    print("onThreeDotTap");
+
+    if (enabledSet.contains(haltStation))
+    {
+      enabledSet.remove(haltStation);
+    } else {
+      enabledSet.add(haltStation);
+    }
+
+    setState(() {
+      //i forgor tis and i cry
+      FINAL_TIMELINE_STATION_WIDGETS.clear();
+      fillTimeLineStationWidget();
+    });
+  }
 
   @override
   void initState() {
     super.initState();
 
-    bool beforeIsHaltStation = false;
+    StationModel currModel;
+    StationModel? currHaltStation;
+    bool threeDotsAssignedForCurrentHaltStation = false;
 
-    for (int i = 0; i < widget.stationModels.length; i++) {
-      StationModel model = widget.stationModels[i];
+    for (int i = 0; i < widget.stationModels.length; i++)
+    {
+      currModel = widget.stationModels[i];
 
-      if (model.isHalt == 1)
-      {
+      //station type is halt
+      if (currModel.isHalt == 1) {
+        threeDotsAssignedForCurrentHaltStation = false;
+        currHaltStation = currModel;
 
-        timeLineChildren.add(Station(stationModel: model));
-
-
-        if(tempSkipStationsList.isNotEmpty)
-        {
-          List<Widget> skipStations = tempSkipStationsList
-              .map((model) => Station(stationModel: model))
-              .toList();
-
-          skipStationMap[haltStationIndex] = skipStations;
-          tempSkipStationsList.clear();
-        }
-
-
-        beforeIsHaltStation = true;
-        haltStationIndex++;
-
+        haltStationModelList.add(currModel);
+        skipStationsAfterHaltMap[currModel] = [];
       } else {
-        if (beforeIsHaltStation) {
-          timeLineChildren.add(
-            ThreeDots(haltStationIndex: haltStationIndex, onTap: onThreeDotTap),
+
+        //three dots will be assigned to those halt stations that have skip stations after them
+        if (!threeDotsAssignedForCurrentHaltStation) {
+          threeDotsForHaltStationMap[currHaltStation!] = ThreeDots(
+            onTap: onThreeDotTap,
+            haltStation: currHaltStation,
           );
-          beforeIsHaltStation = false;
+          threeDotsAssignedForCurrentHaltStation = true;
         }
 
-        tempSkipStationsList.add(model);
+        skipStationsAfterHaltMap[currHaltStation]?.add(currModel);
       }
     }
+
+    fillTimeLineStationWidget();
+
+
   }
 
   @override
@@ -98,7 +133,7 @@ class _TimeLineState extends State<TimeLine> {
           ),
 
           //stations
-          Row(spacing: 20, children: timeLineChildren),
+          Row(spacing: 20, children: FINAL_TIMELINE_STATION_WIDGETS),
         ],
       ),
     );
