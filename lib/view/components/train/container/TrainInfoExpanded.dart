@@ -154,7 +154,7 @@ class _TrainInfoExpandedState extends State<TrainInfoExpanded> {
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
               padding: EdgeInsets.symmetric(horizontal: 16),
-              children: [Center(child: TimeLine(stations: widget.stations))],
+              children: [Center(child: TimeLine(stationModels: widget.stations))],
             ),
           ),
 

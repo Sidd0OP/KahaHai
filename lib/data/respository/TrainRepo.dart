@@ -20,11 +20,11 @@ class TrainRepo {
 
     return trainData
         .where((trainJson) {
-          return trainJson["current_lat"] != null &&
-              trainJson["current_lng"] != null &&
-              trainJson["next_lat"] != null &&
-              trainJson["next_lng"] != null;
-        })
+      return trainJson["current_lat"] != null &&
+          trainJson["current_lng"] != null &&
+          trainJson["next_lat"] != null &&
+          trainJson["next_lng"] != null;
+    })
         .map((train) => PositionModel.fromJson(train))
         .toList();
   }
@@ -32,9 +32,7 @@ class TrainRepo {
 
   //------------------------------------------------------------------------
 
-
-  Future<JourneyDataModel> getJourneyData(int trainNumber, String date) async {
-    /*
+  /*
 
 
     ----------------------------------------------------------------
@@ -49,13 +47,15 @@ class TrainRepo {
 
      */
 
+  Future<JourneyDataModel> getJourneyData(int trainNumber, String date) async {
     final jsonObject = await TrainService().getTrainData(
       "full",
       "12001",
       "2026-05-12",
     );
 
-    if (jsonObject["success"] != true) {
+    if (jsonObject["success"] != true)
+    {
       //throw exception
     }
 
@@ -69,8 +69,13 @@ class TrainRepo {
         .map((stationObject) => StationModel.fromJson(stationObject))
         .toList();
 
-    if ((trainData["metadata"] as Map<String, dynamic>)["hasLiveData"])
-    {
+    Map<String, StationModel> stationCodeMap = {};
+    for (StationModel model in stations) {
+      stationCodeMap[model.stationCode] = model;
+    }
+
+
+    if ((trainData["metadata"] as Map<String, dynamic>)["hasLiveData"]) {
       Map<String, dynamic> liveData = trainData["liveData"];
       Map<String, dynamic> liveLocation = liveData["currentLocation"];
 
@@ -80,7 +85,7 @@ class TrainRepo {
       List<dynamic> liveStations = liveData["route"];
 
       //Update Station Details with live details
-      _updateStationLiveDetails(liveStations, stations);
+      _updateStationLiveDetails(liveStations, stationCodeMap);
     }
 
     return JourneyDataModel(train: train, station: stations);
@@ -88,55 +93,27 @@ class TrainRepo {
 
   //------------------------------------------------------------------------
 
-  Future<void> getOnlyLiveJourneyData(
-      TrainModel train,
-      List<StationModel> stations,
-      ) async {}
+  Future<void> getOnlyLiveJourneyData(TrainModel train,
+      List<StationModel> stations,) async {}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+//|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 
   void _updateStationLiveDetails(
       List<dynamic> liveStations,
-      List<StationModel> stations,
-      ) {
+      Map<String, StationModel> stationCodeMap
+      )
+  {
     for (int i = 0; i < liveStations.length; i++) {
       Map<String, dynamic> liveStation = liveStations[i];
 
-      int staticStationIndex = 1;
-      int liveStationIndex = liveStation["sequence"] as int;
+      stationCodeMap[liveStation["stationCode"]]?.updateLiveStationInfo(liveStation);
 
-      while (true) {
-        if (staticStationIndex < liveStationIndex) {
-          staticStationIndex++;
-          continue;
-        }
-
-        if (staticStationIndex > stations.length ||
-            staticStationIndex > liveStationIndex) {
-          break;
-        }
-
-        //Update station with live Details
-        stations[staticStationIndex - 1].updateLiveStationInfo(liveStation);
-        staticStationIndex++;
-      }
     }
   }
-
 }
+
+
 
 
