@@ -26,7 +26,7 @@ class Floater extends StatelessWidget{
       decoration: ShapeDecoration(
         color: color,
         shape: SmoothRectangleBorder(
-          borderRadius: BorderRadius.circular(48),
+          borderRadius: BorderRadius.circular(42),
           smoothness: 0.8,
         ),
       ),

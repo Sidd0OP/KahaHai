@@ -33,26 +33,43 @@ class SearchPage extends StatelessWidget {
         left: false,
         right: false,
         minimum: EdgeInsets.fromLTRB(10, 10, 10, 0),
-        child: Floater(
-          color: context.tertiary,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            spacing: 8,
-            children: [
-              //buttons
-              TransportOption(),
-              NotificationListener<SearchSubmitNotifier>(
-                child: Search(),
-                onNotification: (notification) {
-                  print(notification.data);
-                  Navigator.pushNamed(context, "/TrackingPage");
-                  return true;
-                },
+        
+        child: Column(
+
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+
+          children: [
+            
+            //Search Area
+            Floater(
+              color: context.tertiary,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                spacing: 8,
+                children: [
+                  //buttons
+                  TransportOption(),
+                  NotificationListener<SearchSubmitNotifier>(
+                    child: Search(),
+                    onNotification: (notification) {
+                      print(notification.data);
+                      Navigator.pushNamed(context, "/TrackingPage");
+                      return true;
+                    },
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
+            ),
+            SizedBox(height: 8),
+            Text("Recent", style: context.headlineLarge?.copyWith(fontSize: 32,fontWeight: FontWeight.w900)),
+            SizedBox(height: 8),
+
+          ],
+        )
+
+
       ),
     );
   }

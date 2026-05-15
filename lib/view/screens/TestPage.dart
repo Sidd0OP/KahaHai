@@ -1,4 +1,4 @@
-import 'package:app/view/components/train/container/TrainInfoExpanded.dart';
+import 'package:app/view/components/train/container/TrainInfoLarge.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

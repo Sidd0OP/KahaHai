@@ -4,7 +4,8 @@ import 'package:smooth_corner/smooth_corner.dart';
 
 class Heading extends StatelessWidget{
 
-  const Heading({super.key});
+  final String trainNumber;
+  const Heading({super.key, required this.trainNumber});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class Heading extends StatelessWidget{
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-                "New Delhi",
+                trainNumber,
                 style: textTheme.headlineLarge
             )
           ],
