@@ -27,14 +27,12 @@ class _TrackingPageState extends State<TrackingPage> {
   List<StationModel> stations = [];
 
   //cool
-  void onTapCallback()
-  {
+  void onTapCallback() {
     expandedState = !expandedState;
     setState(() {});
   }
 
-  void onCancelCallback()
-  {
+  void onCancelCallback() {
     Navigator.pushNamed(context, "/SearchPage");
   }
 
@@ -63,15 +61,12 @@ class _TrackingPageState extends State<TrackingPage> {
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
-
             MapDisplay(),
 
-
-            Visibility(
-              visible: !expandedState,
-              maintainSize: false,
-              maintainAnimation: true,
-              maintainState: true,
+            AnimatedSlide(
+              curve: Curves.easeInOutCubic,
+              offset: expandedState ? Offset(0, 1) : Offset.zero,
+              duration: Duration(milliseconds: 880),
 
               child: TrainInfoSmall(
                 train: train!,
@@ -80,20 +75,23 @@ class _TrackingPageState extends State<TrackingPage> {
               ),
             ),
 
+            AnimatedSlide(
+              curve: Curves.easeInOutCubic,
+              offset: expandedState ? Offset.zero : Offset(0, 1),
+              duration: Duration(milliseconds: 640),
 
-            Visibility(
-              visible: expandedState,
-              maintainSize: false,
-              maintainAnimation: true,
-              maintainState: true,
-
-              child: TrainInfoLarge(
-                train: train!,
-                stations: stations,
-                onTapCallback: onTapCallback,
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  Container(height: 100, color: context.primary),
+                  TrainInfoLarge(
+                    train: train!,
+                    stations: stations,
+                    onTapCallback: onTapCallback,
+                  ),
+                ],
               ),
             ),
-
           ],
         ),
       );

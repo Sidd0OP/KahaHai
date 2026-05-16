@@ -46,7 +46,7 @@ class _TrainInfoSmallState extends State<TrainInfoSmall> {
       child: Stack(
         children: [
           //base
-          Container(color: context.primary),
+          Container(),
           //top
           FractionallySizedBox(
             alignment: Alignment.centerLeft,
@@ -86,7 +86,7 @@ class _TrainInfoSmallState extends State<TrainInfoSmall> {
               mainAxisSize: MainAxisSize.max,
               spacing: 8,
               children: [
-                Expanded(child: _progress(context, 120, 200)),
+
                 IconButton(
                   constraints: BoxConstraints(minWidth: 48, minHeight: 48),
                   style: IconButton.styleFrom(
@@ -99,6 +99,7 @@ class _TrainInfoSmallState extends State<TrainInfoSmall> {
                     'assets/svg/cross.svg',
                   ),
                 ),
+                Expanded(child: _progress(context, 80, 200)),
               ],
             ),
           ),

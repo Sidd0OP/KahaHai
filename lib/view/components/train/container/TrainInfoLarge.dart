@@ -41,6 +41,8 @@ class _TrainInfoLargeState extends State<TrainInfoLarge> {
     super.initState();
   }
 
+  //required for refresh icon animation
+  double turns = 0;
 
   void onTicketTapCallback() => widget.onTapCallback();
 
@@ -95,11 +97,21 @@ class _TrainInfoLargeState extends State<TrainInfoLarge> {
                       IconButton(
                         onPressed: () {
                           //create refresh mechanism, update live data
+                          setState(() {
+                            turns += 1;
+                          });
+
                         },
-                        icon: SvgPicture.asset(
-                          width: 16.0,
-                          height: 16.0,
-                          'assets/svg/refresh_icon.svg',
+                        icon: AnimatedRotation(
+                          turns: turns,
+                          duration: Duration(milliseconds: 420),
+                          curve: Curves.easeInOut,
+
+                          child: SvgPicture.asset(
+                            'assets/svg/refresh_icon.svg',
+                            width: 20,
+                            height: 20,
+                          ),
                         ),
                       ),
                     ],
