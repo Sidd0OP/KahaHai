@@ -1,5 +1,6 @@
 import 'package:app/view/AppTheme.dart';
 import 'package:app/view/components/train/cards/Floater.dart';
+import 'package:app/view/components/train/container/SearchResult.dart';
 import 'package:app/view/components/train/container/TransportOption.dart';
 import 'package:app/view/components/train/pill/Pill.dart';
 import 'package:flutter/cupertino.dart';
@@ -62,9 +63,20 @@ class SearchPage extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 16),
             Text("Recent", style: context.headlineLarge?.copyWith(fontSize: 32,fontWeight: FontWeight.w900)),
             SizedBox(height: 8),
+
+            //Recommendations
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              spacing: 12,
+              children: [
+                SearchResult(),
+                SearchResult(),
+                SearchResult()
+              ],
+            )
 
           ],
         )

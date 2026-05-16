@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-
   static ThemeData appTheme = ThemeData(
     colorScheme: ColorScheme.light(
       primary: Color(0xFFFFFFFF),
@@ -10,86 +9,73 @@ class AppTheme {
       tertiary: Color(0xFF83BCFF),
       error: Color(0xFFF19A3E),
 
-      onSurface: Colors.black
+      onSurface: Colors.black,
     ),
 
-    textTheme: GoogleFonts.poppinsTextTheme().copyWith(
+    textTheme: GoogleFonts.poppinsTextTheme(
+      TextTheme(
+        headlineLarge: const TextStyle(
+          fontSize: 24,
+          color: Colors.black,
+          fontWeight: FontWeight.w500,
+        ),
 
-      headlineLarge: const TextStyle(
-        fontSize: 24,
-        color: Colors.black,
-        fontWeight: FontWeight.w500,
-      ),
+        titleLarge: const TextStyle(
+          fontSize: 20,
+          color: Colors.black,
+          fontWeight: FontWeight.w500,
+        ),
 
-      titleLarge: const TextStyle(
-        fontSize: 20,
-        color: Colors.black,
-        fontWeight: FontWeight.w500,
-      ),
+        titleMedium: const TextStyle(
+          fontSize: 14,
+          color: Colors.black,
+          fontWeight: FontWeight.w600,
+        ),
 
-      titleMedium: const TextStyle(
-        fontSize: 14,
-        color: Colors.black,
-        fontWeight: FontWeight.w600,
-      ),
+        titleSmall: const TextStyle(
+          fontSize: 10,
+          color: Colors.black,
+          fontWeight: FontWeight.w400,
+        ),
 
-      titleSmall: const TextStyle(
-        fontSize: 10,
-        color: Colors.black,
-        fontWeight: FontWeight.w400,
-      ),
+        labelSmall: const TextStyle(
+          fontSize: 8,
+          color: Colors.black,
+          fontWeight: FontWeight.w600,
+        ),
 
-      labelSmall: const TextStyle(
-        fontSize: 8,
-        color: Colors.black,
-        fontWeight: FontWeight.w600,
-      ),
-
-      labelMedium: const TextStyle(
-        fontSize: 12,
-        color: Colors.black,
-        fontWeight: FontWeight.w500,
+        labelMedium: const TextStyle(
+          fontSize: 12,
+          color: Colors.black,
+          fontWeight: FontWeight.w500,
+        ),
       ),
     ),
   );
 }
 
 extension AppThemeExtension on BuildContext {
-
   // COLORS
-  Color get primary =>
-      Theme.of(this).colorScheme.primary;
+  Color get primary => Theme.of(this).colorScheme.primary;
 
-  Color get secondary =>
-      Theme.of(this).colorScheme.secondary;
+  Color get secondary => Theme.of(this).colorScheme.secondary;
 
-  Color get tertiary =>
-      Theme.of(this).colorScheme.tertiary;
+  Color get tertiary => Theme.of(this).colorScheme.tertiary;
 
-  Color get error =>
-      Theme.of(this).colorScheme.error;
+  Color get error => Theme.of(this).colorScheme.error;
 
-  Color get onSurface =>
-      Theme.of(this).colorScheme.onSurface;
-
-
+  Color get onSurface => Theme.of(this).colorScheme.onSurface;
 
   // TEXT STYLES
-  TextStyle? get headlineLarge =>
-      Theme.of(this).textTheme.headlineLarge;
+  TextStyle? get headlineLarge => Theme.of(this).textTheme.headlineLarge;
 
-  TextStyle? get titleLarge =>
-      Theme.of(this).textTheme.titleLarge;
+  TextStyle? get titleLarge => Theme.of(this).textTheme.titleLarge;
 
-  TextStyle? get titleMedium =>
-      Theme.of(this).textTheme.titleMedium;
+  TextStyle? get titleMedium => Theme.of(this).textTheme.titleMedium;
 
-  TextStyle? get titleSmall =>
-      Theme.of(this).textTheme.titleSmall;
+  TextStyle? get titleSmall => Theme.of(this).textTheme.titleSmall;
 
-  TextStyle? get labelSmall =>
-      Theme.of(this).textTheme.labelSmall;
+  TextStyle? get labelSmall => Theme.of(this).textTheme.labelSmall;
 
-  TextStyle? get labelMedium =>
-      Theme.of(this).textTheme.labelMedium;
+  TextStyle? get labelMedium => Theme.of(this).textTheme.labelMedium;
 }

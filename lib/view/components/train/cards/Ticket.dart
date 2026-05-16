@@ -75,7 +75,7 @@ class Ticket extends StatelessWidget {
           spacing: 14,
           children: [
 
-            Text(trainName, style: context.headlineLarge),
+            Text(trainName, style: context.headlineLarge?.copyWith(fontWeight: FontWeight.w900), textAlign: TextAlign.center,),
 
             Row(
               spacing: 8,

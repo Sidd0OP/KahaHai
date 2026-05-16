@@ -3,11 +3,59 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
-class Search extends StatelessWidget {
+class Search extends StatefulWidget {
   const Search({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  State<Search> createState() => _SearchState();
+}
+
+class _SearchState extends State<Search>
+{
+
+  DateTime? selectedDate = DateTime.now();
+  bool dateSelected =  false;
+
+  Future<void> _selectDate() async {
+    final DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2021),
+      lastDate: DateTime.now(),
+
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: ColorScheme.light(
+              onSurface: context.onSurface,
+              primary: context.onSurface,
+              surface: context.primary,
+            ),
+
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                foregroundColor: context.onSurface, // button text color
+              ),
+            ),
+          ),
+
+          child: child!,
+        );
+      },
+
+
+    );
+
+    setState(() {
+      if(pickedDate != null)selectedDate = pickedDate;
+    });
+  }
+
+
+  @override
+  Widget build(BuildContext context)
+  {
+
     return Container(
       height: 48,
       width: double.infinity,
@@ -44,26 +92,31 @@ class Search extends StatelessWidget {
           ),
 
           //date selector
-          Container(
-            width: 100,
-            height: 36,
-
-            alignment: Alignment.center,
-
-            decoration: ShapeDecoration(
-              color: context.secondary,
-              shape: SmoothRectangleBorder(
-                borderRadius: BorderRadius.circular(22),
-                smoothness: 0.6,
+          InkWell(
+            borderRadius: BorderRadius.circular(22),
+            onTap: ()
+            {
+              _selectDate();
+            },
+            child: Container(
+              width: 100,
+              height: 36,
+              alignment: Alignment.center,
+              decoration: ShapeDecoration(
+                color: context.secondary,
+                shape: SmoothRectangleBorder(
+                  borderRadius: BorderRadius.circular(22),
+                  smoothness: 0.6,
+                ),
               ),
+              child: Text("Date"),
             ),
-
-            child: Text("Date"),
-          ),
+          )
         ],
       ),
     );
   }
+
 }
 
 class SearchSubmitNotifier extends Notification {
