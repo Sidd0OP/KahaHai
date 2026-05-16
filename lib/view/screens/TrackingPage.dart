@@ -61,7 +61,7 @@ class _TrackingPageState extends State<TrackingPage> {
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
-            MapDisplay(),
+            const MapDisplay(),
 
             AnimatedSlide(
               curve: Curves.easeInOutCubic,
