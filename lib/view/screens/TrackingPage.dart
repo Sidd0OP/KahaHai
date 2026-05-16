@@ -19,10 +19,24 @@ class TrackingPage extends StatefulWidget {
 }
 
 class _TrackingPageState extends State<TrackingPage> {
+  bool expandedState = false;
+
   final TrainRepo _repo = TrainRepo();
 
   TrainModel? train;
   List<StationModel> stations = [];
+
+  //cool
+  void onTapCallback()
+  {
+    expandedState = !expandedState;
+    setState(() {});
+  }
+
+  void onCancelCallback()
+  {
+    Navigator.pushNamed(context, "/SearchPage");
+  }
 
   Future<void> loadTrainInfo() async {
     JourneyDataModel data = await _repo.getJourneyData(12001, "2026-05-12");
@@ -49,61 +63,39 @@ class _TrackingPageState extends State<TrackingPage> {
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
+
             MapDisplay(),
-            //bottom container
-            // Container(
-            //   color: context.primary,
-            //   height: 100,
-            // ),
-            SafeArea(
-              bottom: true,
 
-              child: NotificationListener<TrainInfoCloseNotifier>(
-                  onNotification: (notification) {
-                    Navigator.pushNamed(context, "/SearchPage");
-                    return true;
-                  },
 
-                  child: TrainInfoSmall(train: train!)
+            Visibility(
+              visible: !expandedState,
+              maintainSize: false,
+              maintainAnimation: true,
+              maintainState: true,
+
+              child: TrainInfoSmall(
+                train: train!,
+                onTapCallback: onTapCallback,
+                onCancelCallback: onCancelCallback,
               ),
-
-              // child: TrainInfoSmall(train: train!),
-              // child: TrainInfoLarge(train: train!, stations: stations),
             ),
+
+
+            Visibility(
+              visible: expandedState,
+              maintainSize: false,
+              maintainAnimation: true,
+              maintainState: true,
+
+              child: TrainInfoLarge(
+                train: train!,
+                stations: stations,
+                onTapCallback: onTapCallback,
+              ),
+            ),
+
           ],
         ),
-
-        // NotificationListener<TrainInfoCloseNotifier>(
-        //           onNotification: (notification) {
-        //             Navigator.pushNamed(context, "/SearchPage");
-        //             return true;
-        //           },
-        //
-        //   child: TrainInfoSmall(train: train!)
-        // )
-
-        // child: SafeArea(
-        //   top: false,
-        //   left: false,
-        //   right: false,
-        //   child: Scaffold(
-        //     backgroundColor: context.primary,
-        //     body: Stack(
-        //       alignment: Alignment.bottomCenter,
-        //       children: [
-        //         MapDisplay(),
-        //         // TrainInfoLarge(train: train!, stations: stations)
-        //         // NotificationListener<TrainInfoCloseNotifier>(
-        //         //   onNotification: (notification) {
-        //         //     Navigator.pushNamed(context, "/SearchPage");
-        //         //     return true;
-        //         //   },
-        //         //   child: TrainInfoExpanded(train: train!, stations: stations),
-        //         // ),
-        //       ],
-        //     ),
-        //   ),
-        // ),
       );
     }
   }

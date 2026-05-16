@@ -21,11 +21,13 @@ class TrainInfoLarge extends StatefulWidget {
 
   final TrainModel train;
   final List<StationModel> stations;
+  final VoidCallback onTapCallback;
 
   const TrainInfoLarge({
     super.key,
     required this.train,
     required this.stations,
+    required this.onTapCallback
   });
 
   @override
@@ -33,10 +35,14 @@ class TrainInfoLarge extends StatefulWidget {
 }
 
 class _TrainInfoLargeState extends State<TrainInfoLarge> {
+
   @override
   void initState() {
     super.initState();
   }
+
+
+  void onTicketTapCallback() => widget.onTapCallback();
 
   @override
   Widget build(BuildContext context) {
@@ -50,80 +56,84 @@ class _TrainInfoLargeState extends State<TrainInfoLarge> {
     final String departure = widget.stations[0].scheduledDeparture;
     final String arrival = widget.stations.last.scheduledArrival;
 
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+    return SafeArea(
+      bottom: true,
+      child: Container(
+        width: double.infinity,
+        padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
 
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(60),
-          topRight: Radius.circular(60),
-        ),
-      ),
-
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-
-        spacing: 14,
-
-        children: [
-          //header
-          // Give data from Train Dao....
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              // side widgets
-              Padding(
-                padding: EdgeInsets.fromLTRB(40, 0, 32, 0),
-                child: Row(
-                  children: [
-                    Text("+ 20m", style: context.titleMedium),
-
-                    Spacer(),
-
-                    IconButton(
-                      onPressed: () {
-                        //create refresh mechanism, update live data
-                      },
-                      icon: SvgPicture.asset(
-                        width: 16.0,
-                        height: 16.0,
-                        'assets/svg/refresh_icon.svg',
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              // absolute center
-              Heading(trainNumber: trainNumber),
-            ],
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(60),
+            topRight: Radius.circular(60),
           ),
+        ),
 
-          //time line
-          //Give Data from Route Dao
-          SizedBox(
-            height: 240,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              padding: EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+
+          spacing: 14,
+
+          children: [
+            //header
+            // Give data from Train Dao....
+            Stack(
+              alignment: Alignment.center,
               children: [
-                Center(child: TimeLine(stationModels: widget.stations)),
+                // side widgets
+                Padding(
+                  padding: EdgeInsets.fromLTRB(40, 0, 32, 0),
+                  child: Row(
+                    children: [
+                      Text("+ 20m", style: context.titleMedium),
+
+                      Spacer(),
+
+                      IconButton(
+                        onPressed: () {
+                          //create refresh mechanism, update live data
+                        },
+                        icon: SvgPicture.asset(
+                          width: 16.0,
+                          height: 16.0,
+                          'assets/svg/refresh_icon.svg',
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                // absolute center
+                Heading(trainNumber: trainNumber),
               ],
             ),
-          ),
 
-          //bottom floater
-          Ticket(
-            train: widget.train
-          ),
-        ],
+            //time line
+            //Give Data from Route Dao
+            SizedBox(
+              height: 240,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                children: [
+                  Center(child: TimeLine(stationModels: widget.stations)),
+                ],
+              ),
+            ),
+
+            //bottom floater
+            Ticket(
+              train: widget.train,
+              ticketColor: context.tertiary,
+              sourceDestinationColor: context.primary,
+              onTicketTapCallback: onTicketTapCallback,
+            ),
+          ],
+        ),
       ),
     );
   }
 }
-
-

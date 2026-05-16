@@ -7,14 +7,19 @@ import 'package:smooth_corner/smooth_corner.dart';
 import 'Floater.dart';
 
 class Ticket extends StatelessWidget {
-
-
   final TrainModel train;
+  final Color ticketColor;
+  final Color sourceDestinationColor;
+  final VoidCallback onTicketTapCallback;
 
   const Ticket({
     super.key,
-    required this.train
+    required this.train,
+    required this.ticketColor,
+    required this.sourceDestinationColor,
+    required this.onTicketTapCallback
   });
+
 
   Widget _sourceDestinationTime(
     BuildContext context,
@@ -55,7 +60,6 @@ class Ticket extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     String trainName = train.trainName;
     String sourceStationCode = train.sourceStationCode;
     String destinationStationCode = train.destinationStationCode;
@@ -64,61 +68,68 @@ class Ticket extends StatelessWidget {
     String departure = "20 Nov, 11:59pm";
     String arrival = "20Nov, 10:00am";
 
-
-    return Padding(
-      padding: EdgeInsetsGeometry.fromLTRB(16, 0, 16, 0),
-      child: Floater(
-        color: context.tertiary,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          spacing: 14,
-          children: [
-
-            Text(trainName, style: context.headlineLarge?.copyWith(fontWeight: FontWeight.w900), textAlign: TextAlign.center,),
-
-            Row(
-              spacing: 8,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                //source
-                _sourceDestinationTime(
-                  context,
-                  context.primary,
-                  sourceStationCode,
-                  departure,
+    return GestureDetector(
+      onTap: onTicketTapCallback,
+      child: Padding(
+        padding: EdgeInsetsGeometry.fromLTRB(16, 0, 16, 0),
+        child: Floater(
+          color: ticketColor,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            spacing: 14,
+            children: [
+              Text(
+                trainName,
+                style: context.headlineLarge?.copyWith(
+                  fontWeight: FontWeight.w900,
                 ),
+                textAlign: TextAlign.center,
+              ),
 
-                //arrow container
-                Container(
-                  width: 24,
-                  height: 24,
-                  alignment: Alignment.center,
-                  decoration: ShapeDecoration(
-                    color: context.onSurface,
-                    shape: SmoothRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      smoothness: 0.6,
+              Row(
+                spacing: 8,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  //source
+                  _sourceDestinationTime(
+                    context,
+                    sourceDestinationColor,
+                    sourceStationCode,
+                    departure,
+                  ),
+
+                  //arrow container
+                  Container(
+                    width: 24,
+                    height: 24,
+                    alignment: Alignment.center,
+                    decoration: ShapeDecoration(
+                      color: context.onSurface,
+                      shape: SmoothRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        smoothness: 0.6,
+                      ),
+                    ),
+                    child: SvgPicture.asset(
+                      "assets/svg/arrow.svg",
+                      width: 16,
+                      height: 16,
                     ),
                   ),
-                  child: SvgPicture.asset(
-                    "assets/svg/arrow.svg",
-                    width: 16,
-                    height: 16,
-                  ),
-                ),
 
-                //destination
-                _sourceDestinationTime(
-                  context,
-                  context.primary,
-                  destinationStationCode,
-                  arrival,
-                ),
-              ],
-            ),
-          ],
+                  //destination
+                  _sourceDestinationTime(
+                    context,
+                    sourceDestinationColor,
+                    destinationStationCode,
+                    arrival,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -55,7 +55,6 @@ class SearchPage extends StatelessWidget {
                   NotificationListener<SearchSubmitNotifier>(
                     child: Search(),
                     onNotification: (notification) {
-                      print(notification.data);
                       Navigator.pushNamed(context, "/TrackingPage");
                       return true;
                     },
