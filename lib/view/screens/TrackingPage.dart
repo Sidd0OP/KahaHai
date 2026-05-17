@@ -19,8 +19,8 @@ class TrackingPage extends StatefulWidget {
 }
 
 class _TrackingPageState extends State<TrackingPage> {
-  bool expandedState = false;
 
+  bool expandedState = false;
   final TrainRepo _repo = TrainRepo();
 
   TrainModel? train;
@@ -61,7 +61,7 @@ class _TrackingPageState extends State<TrackingPage> {
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
-            const MapDisplay(),
+            MapDisplay(train: train!),
 
             AnimatedSlide(
               curve: Curves.easeInOutCubic,
