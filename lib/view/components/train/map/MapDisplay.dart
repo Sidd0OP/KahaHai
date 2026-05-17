@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:app/data/model/train/PositionModel.dart';
 import 'package:app/data/respository/TrainRepo.dart';
 import 'package:app/view/AppTheme.dart';
+import 'package:app/view/components/train/map/MarkerController.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -16,52 +17,52 @@ class MapDisplay extends StatefulWidget {
 }
 
 class _MapDisplayState extends State<MapDisplay> {
-  final TrainRepo _repo = TrainRepo();
-  late List<Marker> markers = [];
-  late final MapController mapController;
 
-  Future<void> loadMarkers() async {
-    List<PositionModel> markerModels = await _repo.getAllTrainPositions();
+  final MarkerController _markerController = MarkerController();
+  final MapController mapController = MapController();
 
-    List<Marker> loadedMarker =  markerModels
-        .map(
-          (model) => Marker(
-            point: LatLng(model.currentLat, model.currentLng),
-            child: Container(width: 20,height: 20,color: context.onSurface),
-          ),
-        )
-        .toList();
+  List<Marker> markers = [];
+  double cameraZoom = 5.0;
+  int zoomState = 5;
 
-    // List<Marker> loadedMarker = [];
-    //
-    // for (int i = 0; i < 10; i++) {
-    //   loadedMarker.add(
-    //     Marker(
-    //       point: LatLng(markerModels[i].currentLat, markerModels[i].currentLng),
-    //       child: Container(width: 20, height: 20, color: Colors.white),
-    //     ),
-    //   );
-    // }
 
+  void displayMarkers() async
+  {
+    await _markerController.initMarkers();
     setState(() {
-      markers = loadedMarker;
+      markers = _markerController.zoom_10;
     });
   }
+
+  void getCurrentCameraZoom()
+  {
+    cameraZoom = mapController.camera.zoom;
+
+  }
+
+
 
   @override
   void initState() {
     super.initState();
-    loadMarkers();
-    mapController = MapController();
+    displayMarkers();
   }
 
   @override
   Widget build(BuildContext context) {
     return FlutterMap(
-      // mapController: mapController,
+      mapController: mapController,
       options: MapOptions(
         initialCenter: LatLng(28.7041, 77.1025),
         initialZoom: 5,
+        onMapEvent: (e) {
+          if(e is MapEventMove)
+          {
+            getCurrentCameraZoom();
+          }
+        }
+
+
       ),
       children: [
         TileLayer(
